@@ -13,7 +13,7 @@ import lejos.robotics.subsumption.*;
 import lejos.util.Delay;
 
 public class SendInformation implements Behavior{
-	private ColorSensor color;
+/*	  	private ColorSensor color;
 	
 	  public SendInformation(SensorPort colorport)
 	    {
@@ -25,22 +25,39 @@ public class SendInformation implements Behavior{
 	       if (color.getColorID() == Color.RED) return true;
 	       return false;
 	    }
+*/
+	
+	private TouchSensor touch;
+	
+	  public SendInformation(SensorPort touchport)
+	    {
+	    	touch = new TouchSensor(touchport);
+	     
+	    }
+	
+	public boolean takeControl() {
+	       //if (touch.isPressed()) return true;
+	       return touch.isPressed();
+	       
+	    }
 
 	    public void suppress() {
 	       
 	    }
 
 	    public void action() {
+	    	
+	    	
 	    	String name = "GD2017-3";
 
 			LCD.drawString("Connecting...", 0, 0);
-			LCD.refresh();
+			//LCD.refresh();
 
 			RemoteDevice btrd = Bluetooth.getKnownDevice(name);
 			if (btrd == null) {
 			LCD.clear();
 			LCD.drawString("No such device", 0, 0);
-			LCD.refresh();
+			//LCD.refresh();
 			Delay.msDelay(2000);
 			System.exit(1);
 			}
@@ -50,14 +67,14 @@ public class SendInformation implements Behavior{
 			if (btc == null) {
 			LCD.clear();
 			LCD.drawString("Connect fail", 0, 0);
-			LCD.refresh();
+			//LCD.refresh();
 			Delay.msDelay(2000);
 			System.exit(1);
 			}
 
 			LCD.clear();
 			LCD.drawString("Connected", 0, 0);
-			LCD.refresh();
+			//LCD.refresh();
 
 			DataOutputStream dos = btc.openDataOutputStream();
 
@@ -74,7 +91,7 @@ public class SendInformation implements Behavior{
 
 			try {
 			LCD.drawString("Closing... ", 0, 0);
-			LCD.refresh();
+			//LCD.refresh();
 			
 			dos.close();
 			btc.close();
@@ -84,7 +101,8 @@ public class SendInformation implements Behavior{
 
 			LCD.clear();
 			LCD.drawString("Finished",3, 4);
-			LCD.refresh();
+			//LCD.refresh();
 			Delay.msDelay(2000);
+			LCD.clear();
 	    }
 }

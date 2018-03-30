@@ -23,21 +23,22 @@ public class GetInformation implements Behavior{
 	LCD.clear();
 	LCD.drawString(connected,0,0);
 	DataInputStream dis = btc.openDataInputStream();
+	LCD.clear();
+	Delay.msDelay(500);
 
 	try {
+		LCD.drawString("Lets try this",0,0);
 		int n = dis.readInt();
-		LCD.drawInt(n, 0, 0);
+		LCD.drawInt(n, 3, 4);
 		dis.close();
-		Delay.msDelay(1000);
+		Delay.msDelay(3000);
 
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
 	
-	LCD.clear();
-	LCD.drawString(closing,0,0);
-	btc.close();
-	LCD.clear();
+	//btc.close();
+	
 	
 	}
 	
