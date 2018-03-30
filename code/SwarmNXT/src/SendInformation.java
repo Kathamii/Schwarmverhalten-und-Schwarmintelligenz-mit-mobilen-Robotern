@@ -48,7 +48,7 @@ public class SendInformation implements Behavior{
 	    public void action() {
 	    	
 	    	
-	    	String name = "GD2017-3";
+	    	String name = "GD2017-4";
 
 			LCD.drawString("Connecting...", 0, 0);
 			//LCD.refresh();
