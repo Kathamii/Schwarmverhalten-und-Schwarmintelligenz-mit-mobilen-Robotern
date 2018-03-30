@@ -11,7 +11,7 @@ public class prog {
 		public void run() {
 			Behavior b1 = new DriveForward();
 		    Behavior b2 = new HitObstacle(SensorPort.S2, SensorPort.S3);
-		    Behavior b3 = new SendInformation(SensorPort.S3);
+		    Behavior b3 = new SendInformation(SensorPort.S1);
 		    //Behavior b4 = new GetInformation();
 		    Behavior [] behaviorarray = {b3};
 		    Arbitrator arby = new Arbitrator(behaviorarray);

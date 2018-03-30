@@ -13,7 +13,7 @@ import lejos.robotics.subsumption.*;
 import lejos.util.Delay;
 
 public class SendInformation implements Behavior{
-/*	  	private ColorSensor color;
+	  	private ColorSensor color;
 	
 	  public SendInformation(SensorPort colorport)
 	    {
@@ -22,12 +22,12 @@ public class SendInformation implements Behavior{
 	    }
 	
 	public boolean takeControl() {
-	       if (color.getColorID() == Color.RED) return true;
-	       return false;
+	      
+	       return color.getColorID() == Color.RED;
 	    }
-*/
+
 	
-	private TouchSensor touch;
+/*	private TouchSensor touch;
 	
 	  public SendInformation(SensorPort touchport)
 	    {
@@ -40,7 +40,7 @@ public class SendInformation implements Behavior{
 	       return touch.isPressed();
 	       
 	    }
-
+*/
 	    public void suppress() {
 	       
 	    }
@@ -69,9 +69,9 @@ public class SendInformation implements Behavior{
 			LCD.drawString("Connect fail", 0, 0);
 			//LCD.refresh();
 			Delay.msDelay(2000);
-			System.exit(1);
+			//System.exit(1);
 			}
-
+			else{
 			LCD.clear();
 			LCD.drawString("Connected", 0, 0);
 			//LCD.refresh();
@@ -104,5 +104,6 @@ public class SendInformation implements Behavior{
 			//LCD.refresh();
 			Delay.msDelay(2000);
 			LCD.clear();
+	    }
 	    }
 }
