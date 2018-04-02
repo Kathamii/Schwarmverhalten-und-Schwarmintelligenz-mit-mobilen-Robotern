@@ -8,56 +8,21 @@ import lejos.nxt.*;
 
 import lejos.nxt.comm.BTConnection;
 import lejos.nxt.comm.Bluetooth;
-import lejos.robotics.Color;
-import lejos.robotics.subsumption.*;
 import lejos.util.Delay;
 
-public class SendInformation implements Behavior{
-	  	private ColorSensor color;
+public class SendInformation {
+	  	
 	
-	  public SendInformation(SensorPort colorport)
+	  public void sendinformation(int information)
 	    {
-	    	color = new ColorSensor(colorport);
-	     
-	    }
-	
-	public boolean takeControl() {
-	      
-	       return color.getColorID() == Color.RED;
-	    }
-
-	
-/*	private TouchSensor touch;
-	
-	  public SendInformation(SensorPort touchport)
-	    {
-	    	touch = new TouchSensor(touchport);
-	     
-	    }
-	
-	public boolean takeControl() {
-	       //if (touch.isPressed()) return true;
-	       return touch.isPressed();
-	       
-	    }
-*/
-	    public void suppress() {
-	       
-	    }
-
-	    public void action() {
-	    	
-	    	
-	    	String name = "GD2017-4";
+		  String name = "GD2017-4";
 
 			LCD.drawString("Connecting...", 0, 0);
-			//LCD.refresh();
 
 			RemoteDevice btrd = Bluetooth.getKnownDevice(name);
 			if (btrd == null) {
 			LCD.clear();
 			LCD.drawString("No such device", 0, 0);
-			//LCD.refresh();
 			Delay.msDelay(2000);
 			System.exit(1);
 			}
@@ -67,14 +32,11 @@ public class SendInformation implements Behavior{
 			if (btc == null) {
 			LCD.clear();
 			LCD.drawString("Connect fail", 0, 0);
-			//LCD.refresh();
 			Delay.msDelay(2000);
-			//System.exit(1);
 			}
-			else{
+			else {
 			LCD.clear();
 			LCD.drawString("Connected", 0, 0);
-			//LCD.refresh();
 
 			DataOutputStream dos = btc.openDataOutputStream();
 
@@ -82,7 +44,7 @@ public class SendInformation implements Behavior{
 				
 				// send this information
 			
-			dos.writeInt(1);
+			dos.writeInt(information);
 			dos.flush();
 			
 			} catch (IOException ioe) {
@@ -91,7 +53,6 @@ public class SendInformation implements Behavior{
 
 			try {
 			LCD.drawString("Closing... ", 0, 0);
-			//LCD.refresh();
 			
 			dos.close();
 			btc.close();
@@ -101,9 +62,13 @@ public class SendInformation implements Behavior{
 
 			LCD.clear();
 			LCD.drawString("Finished",3, 4);
-			//LCD.refresh();
 			Delay.msDelay(2000);
 			LCD.clear();
+	     
 	    }
 	    }
 }
+	
+	
+	    
+

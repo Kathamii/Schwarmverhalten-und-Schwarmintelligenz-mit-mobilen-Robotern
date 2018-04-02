@@ -17,11 +17,8 @@ public class GetInformation implements Behavior{
 	}
 	
 	public void action() {
-	String connected = "Connected";
-	String closing = "Closing...";
-
 	LCD.clear();
-	LCD.drawString(connected,0,0);
+	LCD.drawString("Connected",0,0);
 	DataInputStream dis = btc.openDataInputStream();
 	LCD.clear();
 	Delay.msDelay(500);

@@ -9,14 +9,12 @@ public class prog {
 	public static class BehaviorThread extends Thread {
 		@Override
 		public void run() {
-			Behavior b1 = new DriveForward();
-		    Behavior b2 = new HitObstacle(SensorPort.S2, SensorPort.S3);
-		    Behavior b3 = new SendInformation(SensorPort.S1);
-		    //Behavior b4 = new GetInformation();
-		    Behavior [] behaviorarray = {b3};
+			Behavior driveforward = new DriveForward();
+		    Behavior hitobstacle = new HitObstacle(SensorPort.S2, SensorPort.S3);
+		    Behavior findobject = new FindObject(SensorPort.S1);
+		    Behavior [] behaviorarray = {driveforward, hitobstacle, findobject};
 		    Arbitrator arby = new Arbitrator(behaviorarray);
 		    arby.start();
-		    
 		}
 	}
 	
