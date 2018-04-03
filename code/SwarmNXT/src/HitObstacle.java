@@ -22,8 +22,8 @@ public class HitObstacle implements Behavior{
 
     public void action() {
        suppressed = false;
-       Motor.B.rotate(-180, true);
-       Motor.C.rotate(-360, true);
+       Motor.B.rotate(-360, true);
+       Motor.C.rotate(-720, true);
 
        while( Motor.C.isMoving() && !suppressed )
          Thread.yield();

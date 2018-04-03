@@ -24,6 +24,8 @@ public class FindObject implements Behavior{
 	    	
 	    	new SendInformation().sendinformation(1);
 	    	
-	    
+	    	
+	    	Sound.playTone(1000, 30000, 100);
+	        while (true);
 	    }
 }

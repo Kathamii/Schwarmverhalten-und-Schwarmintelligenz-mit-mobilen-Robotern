@@ -7,15 +7,15 @@ import lejos.nxt.comm.Bluetooth;
 import lejos.util.Delay;
 
 public class RecieveInformation {
-	private BTConnection btc;
+	private BTConnection btconnection;
 	
 	public int recieveinformation() {
 		
 		
-		btc = Bluetooth.waitForConnection();
+		btconnection = Bluetooth.waitForConnection();
 		LCD.clear();
 		LCD.drawString("Connected",0,0);
-		DataInputStream dis = btc.openDataInputStream();
+		DataInputStream dis = btconnection.openDataInputStream();
 		LCD.clear();
 		Delay.msDelay(500);
 
@@ -25,11 +25,11 @@ public class RecieveInformation {
 			dis.close();
 			Delay.msDelay(3000);
 			LCD.clear();
-			btc.close();
+			btconnection.close();
 			return n;
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 		
 		

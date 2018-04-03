@@ -1,12 +1,12 @@
 
 import lejos.nxt.SensorPort;
-import lejos.nxt.Sound;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
+import lejos.util.Delay;
 
 public class prog {
 
-	public static class BehaviorThread extends Thread {
+	public static class FindObjectBehavior extends Thread {
 		@Override
 		public void run() {
 			Behavior driveforward = new DriveForward();
@@ -18,17 +18,30 @@ public class prog {
 		}
 	}
 	
+	public static class FindSoundBehavior extends Thread {
+		@Override
+		public void run() {
+		    Behavior hitobstacle = new HitObstacle(SensorPort.S2, SensorPort.S3);
+		    Behavior findsound = new FindSound(SensorPort.S4);
+		    Behavior [] behaviorarray = {findsound, hitobstacle};
+		    Arbitrator arby = new Arbitrator(behaviorarray);
+		    arby.start();
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 	
-		Thread behaviorThread = new BehaviorThread();
-		behaviorThread.start();
+		Thread findobjectbehavior = new FindObjectBehavior();
+		findobjectbehavior.start();
+		Thread findsoundbehavior = new FindSoundBehavior();
 		
 		int information = new RecieveInformation().recieveinformation();
 			
 		if (information == 1){
-			behaviorThread.interrupt();
-			Sound.twoBeeps();
+			findobjectbehavior.interrupt();
+			Delay.msDelay(1000);
+			findsoundbehavior.start();
 		}
 		
 	}

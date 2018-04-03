@@ -15,21 +15,21 @@ public class SendInformation {
 	
 	  public void sendinformation(int information)
 	    {
-		  String name = "GD2017-4";
+		  String name = "GD2017-3";
 
 			LCD.drawString("Connecting...", 0, 0);
 
-			RemoteDevice btrd = Bluetooth.getKnownDevice(name);
-			if (btrd == null) {
+			RemoteDevice remotedevice = Bluetooth.getKnownDevice(name);
+			if (remotedevice == null) {
 			LCD.clear();
 			LCD.drawString("No such device", 0, 0);
 			Delay.msDelay(2000);
-			System.exit(1);
+			return;
 			}
 
-			BTConnection btc = Bluetooth.connect(btrd);
+			BTConnection btconnection = Bluetooth.connect(remotedevice);
 
-			if (btc == null) {
+			if (btconnection == null) {
 			LCD.clear();
 			LCD.drawString("Connect fail", 0, 0);
 			Delay.msDelay(2000);
@@ -38,7 +38,7 @@ public class SendInformation {
 			LCD.clear();
 			LCD.drawString("Connected", 0, 0);
 
-			DataOutputStream dos = btc.openDataOutputStream();
+			DataOutputStream dos = btconnection.openDataOutputStream();
 
 			try {
 				
@@ -55,7 +55,7 @@ public class SendInformation {
 			LCD.drawString("Closing... ", 0, 0);
 			
 			dos.close();
-			btc.close();
+			btconnection.close();
 			} catch (IOException ioe) {
 			
 			}
