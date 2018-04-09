@@ -15,11 +15,14 @@ public class SendInformation {
 	
 	  public void sendinformation(int information)
 	    {
-		  String name = "GD2017-3";
+		  String name[] = {"GD2017-3","GD2017-4"};
+		  
+		  	for (int i = 0; i<2; i++)
+		  	{
 
 			LCD.drawString("Connecting...", 0, 0);
 
-			RemoteDevice remotedevice = Bluetooth.getKnownDevice(name);
+			RemoteDevice remotedevice = Bluetooth.getKnownDevice(name[i]);
 			if (remotedevice == null) {
 			LCD.clear();
 			LCD.drawString("No such device", 0, 0);
@@ -64,6 +67,7 @@ public class SendInformation {
 			LCD.drawString("Finished",3, 4);
 			Delay.msDelay(2000);
 			LCD.clear();
+			}
 	     
 	    }
 	    }

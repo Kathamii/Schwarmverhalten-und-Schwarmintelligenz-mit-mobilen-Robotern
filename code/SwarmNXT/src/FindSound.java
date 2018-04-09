@@ -28,25 +28,18 @@ public class FindSound implements Behavior{
 		    	 Delay.msDelay(60);
 		    	 Thread.yield();
 		     }
-		     if (suppressed){
-		     Motor.B.stop(); // clean up
-		     Motor.C.stop();
-		     return;
-		     }
-		     else {
-		    	Motor.B.stop(); 
-			    Motor.C.stop();
-			    int volume = 0;
+		     Motor.B.stop(); 
+			 Motor.C.stop();
+		     if (suppressed) return;
+		     
+		     int volume = 0;
 			   while (volume < sound.readValue()) {
 				   volume = sound.readValue();
 				   Motor.B.forward();
 				   Delay.msDelay(200);
 				   Motor.B.stop();
-			   }
-			   
-			   
+		
 		     }
-		     
 		     
 	   }
 }

@@ -13,7 +13,7 @@ public class HitObstacle implements Behavior{
     }
 
     public boolean takeControl() {
-       return touch.isPressed() || ultrasonic.getDistance() < 25;
+       return touch.isPressed() || ultrasonic.getDistance() < 35;
     }
 
     public void suppress() {
