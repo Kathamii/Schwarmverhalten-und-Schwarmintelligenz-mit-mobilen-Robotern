@@ -40,7 +40,7 @@ public class prog {
 			
 		if (information == 1){
 			findobjectbehavior.interrupt();
-			Delay.msDelay(1000);
+			while  (findobjectbehavior.isAlive());
 			findsoundbehavior.start();
 		}
 		

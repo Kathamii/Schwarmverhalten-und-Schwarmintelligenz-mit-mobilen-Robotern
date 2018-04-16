@@ -21,7 +21,7 @@ public class RecieveInformation {
 
 		try {
 			int n = dis.readInt();
-			LCD.drawString("Recieved int:  "+n, 3, 4);
+			LCD.drawString("Recieved int: "+n, 0, 0);
 			dis.close();
 			Delay.msDelay(3000);
 			LCD.clear();

@@ -15,9 +15,9 @@ public class SendInformation {
 	
 	  public void sendinformation(int information)
 	    {
-		  String name[] = {"GD2017-3","GD2017-4"};
+		  String name[] = {"GD2017-1", "GD2017-3"};
 		  
-		  	for (int i = 0; i<2; i++)
+		  	for (int i = 0; i<name.length; i++)
 		  	{
 
 			LCD.drawString("Connecting...", 0, 0);

@@ -13,7 +13,7 @@ public class FindSound implements Behavior{
 	    	sound = new SoundSensor(soundport);
 	    }
 	 public boolean takeControl() {
-		 return sound.readValue()<90;
+		 return sound.readValue()<80;
 	   }
 
 	   public void suppress() {
@@ -24,7 +24,7 @@ public class FindSound implements Behavior{
 		   suppressed = false;
 		     Motor.B.forward();
 		     Motor.C.forward();
-		     for(int i=0; i<50 && !suppressed;i++){
+		     for(int i=0; i<65 && !suppressed;i++){
 		    	 Delay.msDelay(60);
 		    	 Thread.yield();
 		     }
@@ -38,7 +38,6 @@ public class FindSound implements Behavior{
 				   Motor.B.forward();
 				   Delay.msDelay(200);
 				   Motor.B.stop();
-		
 		     }
 		     
 	   }
