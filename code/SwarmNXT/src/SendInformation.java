@@ -15,10 +15,11 @@ public class SendInformation {
 	
 	  public void sendinformation(int information)
 	    {
-		  String name[] = {"GD2017-1", "GD2017-3"};
+		  String name[] = {"GD2017-1", "GD2017-4", "GD2017-3"};
 		  
 		  	for (int i = 0; i<name.length; i++)
 		  	{
+		  		
 
 			LCD.drawString("Connecting...", 0, 0);
 
@@ -27,9 +28,8 @@ public class SendInformation {
 			LCD.clear();
 			LCD.drawString("No such device", 0, 0);
 			Delay.msDelay(2000);
-			return;
 			}
-
+			else {
 			BTConnection btconnection = Bluetooth.connect(remotedevice);
 
 			if (btconnection == null) {
@@ -70,6 +70,7 @@ public class SendInformation {
 			}
 	     
 	    }
+		  	}
 	    }
 }
 	

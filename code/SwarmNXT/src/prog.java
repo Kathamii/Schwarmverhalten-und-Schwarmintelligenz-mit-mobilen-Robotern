@@ -1,8 +1,8 @@
 
+import lejos.nxt.LCD;
 import lejos.nxt.SensorPort;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
-import lejos.util.Delay;
 
 public class prog {
 
@@ -34,14 +34,18 @@ public class prog {
 	
 		Thread findobjectbehavior = new FindObjectBehavior();
 		findobjectbehavior.start();
+		LCD.clear();
+		LCD.drawString("findObject", 0, 0);
 		Thread findsoundbehavior = new FindSoundBehavior();
 		
 		int information = new RecieveInformation().recieveinformation();
 			
 		if (information == 1){
 			findobjectbehavior.interrupt();
-			while  (findobjectbehavior.isAlive());
+			while  (!findobjectbehavior.isInterrupted());
 			findsoundbehavior.start();
+			LCD.clear();
+			LCD.drawString("findSound", 0, 0);
 		}
 		
 	}
