@@ -9,7 +9,7 @@ public class prog {
 	public static class FindObjectBehavior extends Thread {
 		@Override
 		public void run() {
-			Behavior driveforward = new DriveForward();
+		    Behavior driveforward = new DriveForward();
 		    Behavior hitobstacle = new HitObstacle(SensorPort.S2, SensorPort.S3);
 		    Behavior findobject = new FindObject(SensorPort.S1);
 		    Behavior [] behaviorarray = {driveforward, hitobstacle, findobject};
@@ -37,10 +37,8 @@ public class prog {
 		LCD.clear();
 		LCD.drawString("findObject", 0, 0);
 		Thread findsoundbehavior = new FindSoundBehavior();
-		
-		int information = new RecieveInformation().recieveinformation();
 			
-		if (information == 1){
+		if (new RecieveInformation().recieveinformation() == 1){
 			findobjectbehavior.interrupt();
 			while  (!findobjectbehavior.isInterrupted());
 			findsoundbehavior.start();
