@@ -1,5 +1,6 @@
 
 import lejos.nxt.Motor;
+import lejos.nxt.NXTRegulatedMotor;
 import lejos.nxt.SensorPort;
 import lejos.nxt.SoundSensor;
 import lejos.robotics.subsumption.Behavior;
@@ -25,20 +26,29 @@ public class FindSound implements Behavior{
 		     Motor.B.forward();
 		     Motor.C.forward();
 		     for(int i=0; i<65 && !suppressed;i++){
-		    	 Delay.msDelay(60);
+		    	 Delay.msDelay(30);
 		    	 Thread.yield();
 		     }
 		     Motor.B.stop(); 
 			 Motor.C.stop();
 		     if (suppressed) return;
 		     
-		     int volume = 0;
-			   while (volume < sound.readValue()) {
-				   volume = sound.readValue();
-				   Motor.B.forward();
-				   Delay.msDelay(200);
-				   Motor.B.stop();
-		     }
+		     rotatemotor(Motor.B);
+		     rotatemotor(Motor.C);
 		     
+	   }
+	   public void rotatemotor(NXTRegulatedMotor motor){
+		   int volume = 0;
+			  while (volume < sound.readValue()) {
+				   volume = sound.readValue();
+				   motor.forward();
+				   Delay.msDelay(500);
+				   motor.stop();
+				   Delay.msDelay(50);
+			  }
+			  motor.backward();
+			  Delay.msDelay(500);
+			  motor.stop();
+			  
 	   }
 }

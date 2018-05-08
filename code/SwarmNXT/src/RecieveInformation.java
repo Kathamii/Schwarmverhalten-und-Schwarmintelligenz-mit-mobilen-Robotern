@@ -29,10 +29,7 @@ public class RecieveInformation {
 			return n;
 
 		} catch (IOException e) {
-			
 		}
-		
-		
 		return 0;
 		
 	}

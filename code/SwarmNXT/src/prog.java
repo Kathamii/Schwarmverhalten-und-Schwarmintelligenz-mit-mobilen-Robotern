@@ -44,8 +44,6 @@ public class prog {
 			findsoundbehavior.start();
 			LCD.clear();
 			LCD.drawString("findSound", 0, 0);
-		}
-		
+		}		
 	}
-
 }
